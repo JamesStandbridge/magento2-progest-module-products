@@ -81,7 +81,7 @@ Le flux se réalise en deux temps :
 
 **Modèle relationnel de la table progest_swap_product**
 
-![MCD table progest_swap_product](Bio&Co%20cli%20cb63b/Untitled.png)
+![MCD table progest_swap_product](documentation/bdd/mcd.png)
 
 MCD table progest_swap_product
 
