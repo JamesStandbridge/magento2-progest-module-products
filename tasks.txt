@@ -1,0 +1,9 @@
+//gérer tva
+//gérer status
+//renomer le fichier cold avant archivage
+//supprimer les fichiers dont l'archivage à échouer
+rédiger doc
+//créer attribut progest_categorie
+
+creation = 3 produits par secondes
+ne pas déplacer cold data

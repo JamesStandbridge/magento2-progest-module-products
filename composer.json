@@ -1,0 +1,26 @@
+{
+    "name": "progest/module-products",
+    "description": "Magento 2 module Products by Progest.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "James Standbridge",
+            "email": "james.standbridge.git@gmail.com",
+            "role": "Full-stack Developer"
+        }
+    ],
+    "require": {
+        "php": "7.x"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": false,
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Progest\\Products\\": ""
+        }
+    }
+}
