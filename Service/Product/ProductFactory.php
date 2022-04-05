@@ -92,6 +92,14 @@ class ProductFactory
                 $product->setBioProvenance($value);
                 break;
             }
+            case "bio_arbo": {
+                $product->setBioArbo($value);
+                break;
+            }
+            case "progest_arbo": {
+                $product->setProgestArbo($value);
+                break;
+            }
             case "calibre": {
                 $product->setBioCalibre($value);
                 break;

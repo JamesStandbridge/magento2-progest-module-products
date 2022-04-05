@@ -74,6 +74,8 @@ class JobHandler
                 ->setAttributeValue($product, "categorie", $rawProduct["calibre"])
                 ->setAttributeValue($product, "ean_sku", $rawProduct["sku"])
                 ->setAttributeValue($product, "status", $rawProduct["status"])
+                ->setAttributeValue($product, "bio_arbo", $rawProduct["bio_arbo"])
+                ->setAttributeValue($product, "progest_arbo", $rawProduct["progest_arbo"])
                 ->setPrice($product, $rawProduct["prix"])
                 ->setQuantity($product, $rawProduct["quantite"])
             ;
@@ -135,7 +137,10 @@ class JobHandler
                 ->setAttributeValue($product, "classe_tva", $rawProduct["classe_tva"])
                 ->setAttributeValue($product, "ean_sku", $rawProduct["sku"])
                 ->setAttributeValue($product, "status", $rawProduct["status"])
+                ->setAttributeValue($product, "bio_arbo", $rawProduct["bio_arbo"])
+                ->setAttributeValue($product, "progest_arbo", $rawProduct["progest_arbo"])
             ;
+
 
 
             try {
