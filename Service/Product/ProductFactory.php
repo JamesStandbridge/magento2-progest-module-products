@@ -73,7 +73,8 @@ class ProductFactory
             ->setCategoryIds([])
             ->setSku($sku)
             ->setAttributeSetId($attributeSetId)
-            ->setWebsiteIds(array(1))
+            ->setWebsiteIds(array(0))
+            ->setStoreId(0)
             ->setTypeId($typeId)
             ->setWeight($weight)
         ;
@@ -90,6 +91,14 @@ class ProductFactory
             }
             case "origine": {
                 $product->setBioProvenance($value);
+                break;
+            }
+            case "bio_arbo": {
+                $product->setBioArbo($value);
+                break;
+            }
+            case "progest_arbo": {
+                $product->setProgestArbo($value);
                 break;
             }
             case "calibre": {
