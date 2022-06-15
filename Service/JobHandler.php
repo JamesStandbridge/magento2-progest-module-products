@@ -91,8 +91,17 @@ class JobHandler
                 $products_processed++;
                 $this->tableManager->updateProcessDates($rawProduct["code_article"]);
             } catch(\Exception $e) {
-                $this->logger->info(sprintf("Error while creating the product %s. %s", 
-                $product->getSku(), $e->getMessage()));
+                if(get_class($e) === "Magento\UrlRewrite\Model\Exception\UrlAlreadyExistsException") {
+                    $product->setUrlKey($product->getUrlKey() .  "-". $rawProduct["code_article"]);
+                    $product->save();
+                    $this->logger->info(sprintf("URL key concat with sku because of duplication on product %s.", 
+                    $product->getSku()));
+                    $this->logger->info(sprintf("New product added to the catalog sku = %s", $product->getSku()));
+                    $this->tableManager->updateProcessDates($rawProduct["code_article"]);
+                } else {
+                    $this->logger->info(sprintf("Error while creating the product %s. %s", 
+                    $product->getSku(), $e->getMessage()));
+                }
             }
         }
 
