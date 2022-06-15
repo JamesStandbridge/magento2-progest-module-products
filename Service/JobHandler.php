@@ -42,7 +42,11 @@ class JobHandler
             // if(!$rawProduct["prix"] || strlen(trim($rawProduct["prix"])) === 0) {
             //     $this->logger->info(sprintf("Can't create product sku = %s because his price is null",  $rawProduct["code_article"]));
             //     continue;
-            // }
+            // }           
+            if(!$rawProduct["nom"] || strlen(trim($rawProduct["nom"])) === 0) {
+                $this->logger->info(sprintf("Can't create product sku = %s because his name is null",  $rawProduct["code_article"]));
+                continue;
+            }
             try {
                 $product = $this->productFactory->createOrUpdate(
                     $rawProduct["code_article"],
@@ -74,26 +78,31 @@ class JobHandler
                 ->setAttributeValue($product, "categorie", $rawProduct["calibre"])
                 ->setAttributeValue($product, "ean_sku", $rawProduct["sku"])
                 ->setAttributeValue($product, "status", $rawProduct["status"])
+                ->setAttributeValue($product, "bio_arbo", $rawProduct["bio_arbo"])
+                ->setAttributeValue($product, "progest_arbo", $rawProduct["progest_arbo"])
                 ->setPrice($product, $rawProduct["prix"])
                 ->setQuantity($product, $rawProduct["quantite"])
             ;
 
             try {
-            
                 $product->save();
-
-                // dump($product->getId());
-                // dump($product->getSku());
-                // dump($product->getName());
 
                 $this->logger->info(sprintf("New product added to the catalog sku = %s", $product->getSku()));
                 $products_processed++;
                 $this->tableManager->updateProcessDates($rawProduct["code_article"]);
             } catch(\Exception $e) {
-                $this->logger->info(sprintf("Error while creating the product %s. %s", 
-                $product->getSku(), $e->getMessage()));
+                if(get_class($e) === "Magento\UrlRewrite\Model\Exception\UrlAlreadyExistsException") {
+                    $product->setUrlKey($product->getUrlKey() .  "-". $rawProduct["code_article"]);
+                    $product->save();
+                    $this->logger->info(sprintf("URL key concat with sku because of duplication on product %s.", 
+                    $product->getSku()));
+                    $this->logger->info(sprintf("New product added to the catalog sku = %s", $product->getSku()));
+                    $this->tableManager->updateProcessDates($rawProduct["code_article"]);
+                } else {
+                    $this->logger->info(sprintf("Error while creating the product %s. %s", 
+                    $product->getSku(), $e->getMessage()));
+                }
             }
-
         }
 
         return $products_processed;
@@ -135,7 +144,10 @@ class JobHandler
                 ->setAttributeValue($product, "classe_tva", $rawProduct["classe_tva"])
                 ->setAttributeValue($product, "ean_sku", $rawProduct["sku"])
                 ->setAttributeValue($product, "status", $rawProduct["status"])
+                ->setAttributeValue($product, "bio_arbo", $rawProduct["bio_arbo"])
+                ->setAttributeValue($product, "progest_arbo", $rawProduct["progest_arbo"])
             ;
+
 
 
             try {
