@@ -318,5 +318,3 @@ Des logs sont rédigés lors de chaque exécution, sur le fichier {{site}}/var/l
 | chaude | /artSite/producteur | origine | bio_provenance |
 | chaude | /artSite/categorie | categorie | progest_categorie |
 | chaude | /artSite/calibre | calibre | bio_calibre |
-
-[Réglage RCU](https://www.notion.so/R-glage-RCU-f9f332c105f8472fba604ada09bb445a)
