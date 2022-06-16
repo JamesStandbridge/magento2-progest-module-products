@@ -12,7 +12,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
   <group id="default">
     <job name="progest_products_products" instance="Progest\Products\Cron\Products" method="execute">
-      <schedule>* * * * *</schedule>
+      <schedule>*/30 * * * *</schedule>
     </job>
   </group>
 </config>
