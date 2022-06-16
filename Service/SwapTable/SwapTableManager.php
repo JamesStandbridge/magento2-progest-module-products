@@ -12,7 +12,7 @@ use DateTime;
 
 class SwapTableManager
 {
-    private ResourceConnection $resourceConnection;
+    private $resourceConnection;
     
     public function __construct(ResourceConnection $resourceConnection) 
     {
@@ -75,7 +75,7 @@ class SwapTableManager
         return $result;
     }
 
-    public function updateHotProcessDate(string $code_article)
+    public function updateHotProcessDate($code_article)
     {
         $connection = $this->resourceConnection->getConnection();
         $table = $connection->getTableName('progest_swap_product');
@@ -91,7 +91,7 @@ class SwapTableManager
         return $result;
     }
 
-    public function updateColdProcessDate(string $code_article)
+    public function updateColdProcessDate($code_article)
     {
         $connection = $this->resourceConnection->getConnection();
         $table = $connection->getTableName('progest_swap_product');
@@ -107,7 +107,7 @@ class SwapTableManager
         return $result;
     }
 
-    public function updateProcessDates(string $code_article)
+    public function updateProcessDates($code_article)
     {
         $connection = $this->resourceConnection->getConnection();
         $table = $connection->getTableName('progest_swap_product');

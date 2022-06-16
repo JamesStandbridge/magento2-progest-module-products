@@ -14,9 +14,9 @@ use Magento\Catalog\Model\Product\Attribute\Source\Status;
 
 class ProductFactory
 {
-    private MagProductFactory $factory;
-    private Attribute $attributeHelper;
-    private ProductRepositoryInterface $productRepository;
+    private $factory;
+    private $attributeHelper;
+    private $productRepository;
 
 
     const TAX_ASSOCIATION = [
@@ -40,7 +40,7 @@ class ProductFactory
         $this->productRepository = $productRepository;
     }
 
-    public function get(string $sku): ?Product
+    public function get($sku)
     {
         try {
             $product = $this->productRepository->get($sku);
@@ -51,13 +51,13 @@ class ProductFactory
     }
 
     public function createOrUpdate(
-        string $sku,
-        string $name,
-        int $attributeSetId,
-        string $typeId,
-        string $price,
-        int $visiblibilty,
-        string $weight
+        $sku,
+        $name,
+        $attributeSetId,
+        $typeId,
+        $price,
+        $visiblibilty,
+        $weight
     )
     {
         try {
@@ -82,7 +82,7 @@ class ProductFactory
         return $product;
     }
 
-    public function setAttributeValue(Product $product, string $progestLabel, $value): self
+    public function setAttributeValue($product, $progestLabel, $value)
     {
         switch($progestLabel) {
             case "increment": {
@@ -179,21 +179,21 @@ class ProductFactory
         return $this;
     }
 
-    public function setPrice(Product $product, string $price)
+    public function setPrice($product, $price)
     {
         $product->setPrice($price);
 
         return $this;
     }
 
-    public function setQuantity(Product $product, string $quantity)
+    public function setQuantity($product, $quantity)
     {
         $product->setQuantityAndStockStatus(['qty' => $quantity, 'is_in_stock' => $quantity > 0 ? 1 : 0]);
 
         return $this;
     }
 
-    public function getOptionId(string $value, string $attributeCode)
+    public function getOptionId($value, $attributeCode)
     {
         $optionId = $this->attributeHelper->getOptionId($value, $attributeCode);
         if(!$optionId) {

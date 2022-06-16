@@ -14,7 +14,7 @@ use Progest\Products\Service\JobHandler;
 
 class Products
 {
-    private JobHandler $handler;
+    private $handler;
 
     public function __construct(
         JobHandler $handler
@@ -53,7 +53,7 @@ class Products
         }
     }
 
-    private static function startLogger(string $path) {
+    private static function startLogger($path) {
         try {
             // Create directory if not exists
             $check = Helper::checkOrCreateDir($path);

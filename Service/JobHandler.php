@@ -13,8 +13,8 @@ class JobHandler
 {
     const BIO_ATTRIBUTE_SET_ID = 9;
 
-    private SwapTableManager $tableManager;
-    private ProductFactory $productFactory;
+    private $tableManager;
+    private $productFactory;
     private $logger;
 
     public function __construct(
